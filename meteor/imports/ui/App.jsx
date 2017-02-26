@@ -19,26 +19,30 @@ export default class App extends Component {
     }
 
     handleChange(e, obj) {
-        const {value, id} = obj;
-        if (!id) return;
-        
-        switch (id) {
-            case 'code':
-                this.setState({code: value});
-                break;
+        try {
+            const {value, id} = obj;
+            if (!id) return;
 
-            case 'phoneCountry':
-                this.setState({phoneCountry: value});
-                break;
+            switch (id) {
+                case 'code':
+                    this.setState({code: value});
+                    break;
 
-            case 'phoneNumber':
-                this.setState({phoneNumber: value});
-                break;
+                case 'phoneCountry':
+                    this.setState({phoneCountry: value});
+                    break;
 
-            case 'password':
-                this.setState({password: value});
-                break;
+                case 'phoneNumber':
+                    this.setState({phoneNumber: value});
+                    break;
 
+                case 'password':
+                    this.setState({password: value});
+                    break;
+
+            }
+        } catch (e) {
+            //temp error remove
         }
     }
 
