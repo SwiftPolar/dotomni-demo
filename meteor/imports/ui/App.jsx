@@ -42,7 +42,7 @@ export default class App extends Component {
     sendCode(event) {
         event.preventDefault();
 
-        const {phoneNumber, phoneCountry, platform, loadingSend} = this.state;
+        const {phoneNumber, phoneCountry, platform, loadingSend, password} = this.state;
 
         if (loadingSend) {
             //still sending or requesting too soon
@@ -64,7 +64,7 @@ export default class App extends Component {
         //should do some phone validation here
         console.log("SENDING CODE");
         this.setState({loadingSend: true});
-        Meteor.call('sendCode', phoneCountry, phoneNumber, platform, (err, res) => {
+        Meteor.call('sendCode', phoneCountry, phoneNumber, platform, password, (err, res) => {
             this.setState({loadingSend: false}); //you might want to put a timeout
 
             if (err) {
@@ -83,7 +83,7 @@ export default class App extends Component {
     verifyCode(event) {
         event.preventDefault();
 
-        const {verifyId, loadingVerify, code} = this.state;
+        const {verifyId, loadingVerify, code, password} = this.state;
         if (loadingVerify || !code) {
             return;
         }
@@ -91,7 +91,7 @@ export default class App extends Component {
         console.log("VERIFYING CODE");
 
         this.setState({loadingVerify: true});
-        Meteor.call('verifyCode', verifyId, code, (err, res) => {
+        Meteor.call('verifyCode', verifyId, code, password, (err, res) => {
             this.setState({loadingVerify: false}); //you might want to put a timeout
 
             if (err) {

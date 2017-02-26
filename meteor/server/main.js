@@ -6,7 +6,7 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-    sendCode(country, phone, platform) {
+    sendCode(country, phone, platform, password) {
         //should do some validation to make sure phone number is valid
 
         try {
@@ -14,7 +14,7 @@ Meteor.methods({
                 "https://service.dotomni.com/verification/request/json", {
                 data: {
                     'api_key': Meteor.settings.public.dotomniApiPub,
-                    'api_secret': Meteor.settings.dotomniApiSecret,
+                    'api_secret': password,
                     'phone': phone,
                     'country': country,
                     platform: platform
@@ -33,7 +33,7 @@ Meteor.methods({
         }
     },
 
-    verifyCode(verifyId, code) {
+    verifyCode(verifyId, code, password) {
         //should do some validation to make sure phone number is valid
         //you should also store the response at your server side for validation
 
@@ -42,7 +42,7 @@ Meteor.methods({
                 "https://service.dotomni.com/verification/verify/json", {
                     data: {
                         'api_key': Meteor.settings.public.dotomniApiPub,
-                        'api_secret': Meteor.settings.dotomniApiSecret,
+                        'api_secret': password,
                         'verifyId': verifyId,
                         'code': code
                     }
