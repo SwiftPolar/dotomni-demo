@@ -18,7 +18,8 @@ export default class App extends Component {
         }
     }
 
-    handleChange(e, {value, id}) {
+    handleChange(e, obj) {
+        const {value, id} = obj;
         if (!id) return;
         
         switch (id) {
