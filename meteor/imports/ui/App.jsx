@@ -19,6 +19,8 @@ export default class App extends Component {
     }
 
     handleChange(e, {value, id}) {
+        if (!id) return;
+        
         switch (id) {
             case 'code':
                 this.setState({code: value});
