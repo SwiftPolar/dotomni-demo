@@ -13,7 +13,8 @@ export default class App extends Component {
             loadingSend: false,
             loadingVerify: false,
             verifyId: '',
-            errorCode: false
+            errorCode: false,
+            password: ''
         }
     }
 
@@ -29,6 +30,10 @@ export default class App extends Component {
 
             case 'phoneNumber':
                 this.setState({phoneNumber: value});
+                break;
+
+            case 'password':
+                this.setState({password: value});
                 break;
 
         }
@@ -161,7 +166,8 @@ export default class App extends Component {
                     <Grid.Column width="8" verticalAlign="middle">
                         <Form onChange={this.handleChange.bind(this)} error={errorCode} success={submit}>
                             <Form.Input label="Username" placeholder="Dotomni" type="text"/>
-                            <Form.Input label="Enter Password" placeholder="password" type="password"/>
+                            <Form.Input id="password" label="Enter Password" placeholder="password" type="password"
+                                        onChange={this.handleChange.bind(this)}/>
                             <Form.Input label="Confirm Password" placeholder="confirm password" type="password"/>
                             {getPhoneVerification()}
                             <Form.Button disabled={!submit} fluid={true} content="Submit"/>
