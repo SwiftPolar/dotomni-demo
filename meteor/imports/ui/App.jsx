@@ -126,7 +126,7 @@ export default class App extends Component {
                     [
                         <Form.Group key="phone-number-input">
                             <Form.Input id="phoneCountry" onChange={this.handleChange.bind(this)}
-                                        width={3} label="Country" placeholder="65" type="number"/>
+                                        width={3} label="Country" placeholder="e.g. 65 for SG" type="number"/>
                             <Form.Input id="phoneNumber" onChange={this.handleChange.bind(this)}
                                         width={6} label="Phone Number" placeholder="xxx" type="number"/>
                             <Form.Field width={7}>
@@ -135,6 +135,10 @@ export default class App extends Component {
                             </Form.Field>
                         </Form.Group>,
                         <Form.Group key="phone-code-verify">
+                            <Form.Field width={6}>
+                                <Button fluid={true} loading={loadingSend} icon="lock" content="Send Code"
+                                        onClick={this.sendCode.bind(this)}/>
+                            </Form.Field>
                             <Form.Field width={12} error={errorCode}>
                                 <Input id="code" placeholder="Enter 6 digit code"
                                        onChange={this.handleChange.bind(this)}
@@ -144,14 +148,9 @@ export default class App extends Component {
                                            content: 'Verify',
                                            onClick: this.verifyCode.bind(this)
                                        }}
-                                       actionPosition="left"
                                 />
 
                                 <Message error header="Code is invalid. Please retry"/>
-                            </Form.Field>
-                            <Form.Field width={6}>
-                                <Button loading={loadingSend} icon="lock" content="Send Code"
-                                        onClick={this.sendCode.bind(this)}/>
                             </Form.Field>
                         </Form.Group>
                     ]
@@ -170,7 +169,7 @@ export default class App extends Component {
                     <Image size="medium" centered={true} src="https://docs.dotomni.com/images/logo.png" />
                 </Grid.Row>
                 <Grid.Row columns={16} centered={true}>
-                    <Grid.Column width="8" verticalAlign="middle">
+                    <Grid.Column width="8" mobile={14} verticalAlign="middle">
                         <Form onChange={this.handleChange.bind(this)} error={errorCode} success={submit}>
                             <Form.Input label="Username" placeholder="Dotomni" type="text"/>
                             <Form.Input id="password" label="Enter Password" placeholder="password" type="password"
